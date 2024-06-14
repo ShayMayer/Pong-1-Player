@@ -67,8 +67,6 @@ public class PongLogic {
                     this.ball.set((room.getX() + room.getX() + room.getWidth() / 2) - this.ball.getSize() / 2, (room.getX() + room.getHeight()) / 3);
                     this.ball.resetVelocity();
 
-                    //this.bat.setX(((room.getX() + room.getX() + room.getWidth()) / 2) - this.bat.getWidth() / 2);
-
                     break;
                 default: break;
             }
