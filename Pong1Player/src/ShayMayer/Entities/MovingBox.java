@@ -5,8 +5,8 @@ import java.awt.*;
 public abstract class MovingBox extends Rect {
     protected int velocityX, velocityY;
 
-    public MovingBox(int x, int y, int width, int height, int velocityX, int velocityY, Color color, boolean filled) {
-        super(x, y, width, height, color, filled);
+    public MovingBox(int x, int y, int width, int height, int velocityX, int velocityY, Color color, boolean toFill) {
+        super(x, y, width, height, color, toFill);
 
         this.setVelocity(velocityX, velocityY);
     }

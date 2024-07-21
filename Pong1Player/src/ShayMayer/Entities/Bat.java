@@ -10,8 +10,8 @@ public class Bat extends MovingBox {
     private static final int DEFAULT_BAT_VELOCITY = 15;
     private static final Color BAT_COLOR = Color.BLACK;
 
-    public Bat(int x, int y, int width, int height, int velocity, Color color, boolean filled) {
-        super(x, y, width, height, velocity, 0, color, filled);
+    public Bat(int x, int y, int width, int height, int velocity, Color color, boolean toFill) {
+        super(x, y, width, height, velocity, 0, color, toFill);
     }
 
     public Bat(int x, int y) {
