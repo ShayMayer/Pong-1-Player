@@ -2,6 +2,7 @@ package ShayMayer.GameManagement;
 
 import ShayMayer.Entities.Ball;
 import ShayMayer.Entities.Bat;
+import ShayMayer.Entities.Rect;
 import ShayMayer.Entities.Room;
 import ShayMayer.Input.GameOverInputHandler;
 import ShayMayer.Input.InGameInputHandler;
@@ -31,18 +32,24 @@ public class PongGame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
-        Room room = new Room(0, 0, (int)(SCREEN_WIDTH * 0.8), (int)(SCREEN_HEIGHT * 0.8));
-        Bat bat = new Bat(((room.getX() + room.getX() + room.getWidth()) / 2), room.getY() + (int)((room.getY() + room.getHeight()) * 0.85));
+        Room room = new Room(0, 0, (int) (SCREEN_WIDTH * 0.8), (int) (SCREEN_HEIGHT * 0.8));
+
+        Bat bat = new Bat(((room.getX() + room.getX() + room.getWidth()) / 2), room.getY() + (int) ((room.getY() + room.getHeight()) * 0.85));
+        bat.moveX(-bat.getWidth() / 2);
+
         Ball ball = new Ball(room.getX() + room.getX() + room.getWidth() / 2, (room.getX() + room.getHeight()) / 3);
+        ball.moveX(-ball.getSize() / 2);
+
         Score score = new Score();
         Lives lives = new Lives();
 
         this.initializeListeners();
 
-        this.logic = new PongLogic(room, bat, ball, score, lives ,inGameInputHandler);
+        this.logic = new PongLogic(room, bat, ball, score, lives, inGameInputHandler);
 
-        this.renderer = new PongRenderer((int)(SCREEN_WIDTH * 0.1), (int)(SCREEN_HEIGHT * 0.1));
-        this.renderer.setParts(room, bat, ball, score, lives);
+        this.renderer = new PongRenderer((int) (SCREEN_WIDTH * 0.1), (int) (SCREEN_HEIGHT * 0.1));
+        this.renderer.setCosmeticParts(score, lives);
+        this.renderer.setGameParts(new Rect[]{room, bat, ball});
 
         this.setStopWatch();
 

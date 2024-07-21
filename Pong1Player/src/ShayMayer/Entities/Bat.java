@@ -8,16 +8,20 @@ public class Bat extends MovingBox {
     private static final int DEFAULT_BAT_WIDTH = 120;
     private static final int DEFAULT_BAT_HEIGHT = 20;
     private static final int DEFAULT_BAT_VELOCITY = 15;
+    private static final Color BAT_COLOR = Color.BLACK;
 
-    public Bat(int x, int y, int width, int height, int velocity) {
-        super(x, y, width, height, velocity, 0);
+    public Bat(int x, int y, int width, int height, int velocity, Color color, boolean filled) {
+        super(x, y, width, height, velocity, 0, color, filled);
     }
 
     public Bat(int x, int y) {
-        this(x - DEFAULT_BAT_WIDTH / 2, y, DEFAULT_BAT_WIDTH, DEFAULT_BAT_HEIGHT, DEFAULT_BAT_VELOCITY);
+        this(x, y, DEFAULT_BAT_WIDTH, DEFAULT_BAT_HEIGHT, DEFAULT_BAT_VELOCITY, BAT_COLOR, true);
     }
 
-    public CollisionInfo collided(Ball ball) {
+    public CollisionInfo collided(Rect box) {
+        if(!(box instanceof Ball)) return CollisionInfo.NONE;
+        Ball ball = (Ball)box;
+
         Rectangle batRect = new Rectangle(this.x, this.y, this.width, this.height);
         Rectangle ballRect = new Rectangle(ball.x, ball.y, ball.width, ball.height);
         if(!batRect.intersects(ballRect)) return CollisionInfo.NONE;

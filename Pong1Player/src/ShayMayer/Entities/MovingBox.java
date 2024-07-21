@@ -1,10 +1,12 @@
 package ShayMayer.Entities;
 
-public abstract class MovingBox extends Box {
+import java.awt.*;
+
+public abstract class MovingBox extends Rect {
     protected int velocityX, velocityY;
 
-    public MovingBox(int x, int y, int width, int height, int velocityX, int velocityY) {
-        super(x, y, width, height);
+    public MovingBox(int x, int y, int width, int height, int velocityX, int velocityY, Color color, boolean filled) {
+        super(x, y, width, height, color, filled);
 
         this.setVelocity(velocityX, velocityY);
     }
