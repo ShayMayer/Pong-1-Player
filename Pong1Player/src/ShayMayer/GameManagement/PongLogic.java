@@ -24,7 +24,7 @@ public class PongLogic {
         this.lives = lives;
         this.inputHandler = inputHandler;
     }
-    static int counter = 0;
+
     public void updateBatPosition() {
         boolean leftPressed = this.inputHandler.leftPressed();
         boolean rightPressed = this.inputHandler.rightPressed();
@@ -34,7 +34,6 @@ public class PongLogic {
         if(leftPressed) this.bat.moveLeft();
         else this.bat.moveRight();
 
-        System.out.println(counter++);
         CollisionInfo roomWithBatCollision = this.room.collided(this.bat);
         if(roomWithBatCollision != CollisionInfo.NONE) {
             switch (roomWithBatCollision) {
