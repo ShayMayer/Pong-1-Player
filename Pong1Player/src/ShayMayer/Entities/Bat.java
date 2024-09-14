@@ -33,6 +33,14 @@ public class Bat extends MovingBox {
         return CollisionInfo.NONE;
     }
 
+    public void moveLeft() {
+        this.negateVelocityX();
+        this.updatePositionX();
+        this.negateVelocityX();
+    }
+
+    public void moveRight() { this.updatePosition(); }
+
     public void resetVelocity() { this.setVelocityX(DEFAULT_BAT_VELOCITY); }
     @Override
     public void set(int x, int y) { this.setX(y); }

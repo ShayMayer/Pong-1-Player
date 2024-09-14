@@ -20,9 +20,7 @@ public abstract class MovingBox extends Rect {
     }
 
     public void negateVelocity() { this.negateVelocityX(); this.negateVelocityY(); }
-    public void negateVelocityX() {
-        this.velocityX *= -1;
-    }
+    public void negateVelocityX() { this.velocityX *= -1; }
     public void negateVelocityY() {
         this.velocityY *= -1;
     }

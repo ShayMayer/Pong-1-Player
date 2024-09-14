@@ -24,18 +24,17 @@ public class PongLogic {
         this.lives = lives;
         this.inputHandler = inputHandler;
     }
-
+    static int counter = 0;
     public void updateBatPosition() {
-        if(this.inputHandler.leftPressed() && this.inputHandler.rightPressed()) return;
+        boolean leftPressed = this.inputHandler.leftPressed();
+        boolean rightPressed = this.inputHandler.rightPressed();
 
-        if(this.inputHandler.leftPressed()) {
-            this.bat.negateVelocityX();
-            this.bat.updatePositionX();
-            this.bat.negateVelocityX();
-        }
-        else if(this.inputHandler.rightPressed())
-            this.bat.updatePositionX();
+        if((leftPressed && rightPressed) || (!leftPressed && !rightPressed)) return;
 
+        if(leftPressed) this.bat.moveLeft();
+        else this.bat.moveRight();
+
+        System.out.println(counter++);
         CollisionInfo roomWithBatCollision = this.room.collided(this.bat);
         if(roomWithBatCollision != CollisionInfo.NONE) {
             switch (roomWithBatCollision) {
