@@ -25,7 +25,7 @@ public class PongLogic {
         this.inputHandler = inputHandler;
     }
 
-    public void updateBatPosition() {
+    private void updateBatPosition() {
         boolean leftPressed = this.inputHandler.leftPressed();
         boolean rightPressed = this.inputHandler.rightPressed();
 
@@ -44,7 +44,7 @@ public class PongLogic {
         }
     }
 
-    public void updateBallPosition() {
+    private void updateBallPosition() {
         this.ball.updatePosition();
 
         CollisionInfo roomWithBallCollision = this.room.collided(this.ball);
@@ -56,11 +56,7 @@ public class PongLogic {
                 case DOWN:
                     this.lives.update();
 
-                    if(gameOver()) {
-                        this.ball.setVelocity(0, 0);
-                        this.bat.setVelocityX(0);
-                        return;
-                    }
+                    if(this.gameOver()) return;
 
                     this.ball.set((room.getX() + room.getX() + room.getWidth() / 2) - this.ball.getSize() / 2, (room.getX() + room.getHeight()) / 3);
                     this.ball.resetVelocity();
@@ -85,7 +81,7 @@ public class PongLogic {
 
     public boolean gameOver() { return this.lives.getLives() == 0; }
 
-    public void updatePosition() {
+    private void updatePosition() {
         if(this.gameOver()) return;
 
         this.updateBatPosition();
